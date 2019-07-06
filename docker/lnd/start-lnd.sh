@@ -43,6 +43,7 @@ RPCUSER=$(set_default "$RPCUSER" "devuser")
 RPCPASS=$(set_default "$RPCPASS" "devpass")
 DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
+ALIAS=$(set_default "$ALIAS" "elastoo-ln")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
 BACKEND="btcd"
 if [[ "$CHAIN" == "litecoin" ]]; then
@@ -52,6 +53,7 @@ fi
 exec lnd \
     --noseedbackup \
     --logdir="/data" \
+    --alias="$ALIAS" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
