@@ -37,7 +37,7 @@ services:
 
 
     lnd:
-        image: gcr.io/lightning-btc-245420/github.com/z1nkum/btcd:latest
+        image: gcr.io/lightning-btc-245420/github.com/z1nkum/lnd:latest
         environment:
           - RPCUSER
           - RPCPASS
