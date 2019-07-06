@@ -59,12 +59,18 @@ PARAMS=$(echo $PARAMS \
     "--rpckey=/rpc/rpc.key" \
     "--rpclisten=0.0.0.0" \
     "--maxpeers=512" \
+    "--upnp" \
     "--txindex"
 )
 
 # Set the mining flag only if address is non empty.
 if [[ -n "$MINING_ADDRESS" ]]; then
     PARAMS="$PARAMS --miningaddr=$MINING_ADDRESS"
+fi
+
+# Set external IP only if address is non empty.
+if [[ -n "$EXTERNAL_ADDRESS" ]]; then
+    PARAMS="$PARAMS --externalip=$EXTERNAL_ADDRESS"
 fi
 
 # Add user parameters to command.
