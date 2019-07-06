@@ -58,6 +58,7 @@ PARAMS=$(echo $PARAMS \
     "--rpccert=/rpc/rpc.cert" \
     "--rpckey=/rpc/rpc.key" \
     "--rpclisten=0.0.0.0" \
+    "--maxpeers=512" \
     "--txindex"
 )
 
