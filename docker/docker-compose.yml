@@ -5,9 +5,7 @@ services:
     # btccli. The environment variables default values determined on stage of
     # container start within starting script.
     btc:
-      image: btcd
-      build:
-        context: btcd/
+      image: gcr.io/lightning-btc-245420/github.com/z1nkum/btcd:latest
       volumes:
             - shared:/rpc
             - bitcoin:/data
@@ -39,10 +37,7 @@ services:
 
 
     lnd:
-        image: lnd
-        build:
-          context: ../
-          dockerfile: docker/lnd/Dockerfile
+        image: gcr.io/lightning-btc-245420/github.com/z1nkum/btcd:latest
         environment:
           - RPCUSER
           - RPCPASS
