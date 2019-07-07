@@ -53,6 +53,7 @@ services:
       container_name: lnd_btc
       ports:
           - "9735:9735"
+          - "10009:10009"
       links:
           - "btcd:blockchain"
 
