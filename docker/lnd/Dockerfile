@@ -17,6 +17,11 @@ RUN apk add --no-cache --update alpine-sdk \
 &&  make \
 &&  make install tags="signrpc walletrpc chainrpc invoicesrpc routerrpc"
 
+RUN go get -d github.com/LN-Zap/lndconnect \
+&& cd $GOPATH/src/github.com/LN-Zap/lndconnect \
+&& make \
+&& make install
+
 # Start a new, final image to reduce size.
 FROM alpine as final
 
@@ -26,6 +31,7 @@ EXPOSE 9735 10009
 # Copy the binaries and entrypoint from the builder image.
 COPY --from=builder /go/bin/lncli /bin/
 COPY --from=builder /go/bin/lnd /bin/
+COPY --from=builder /go/bin/lndconnect /bin/
 
 # Add bash.
 RUN apk add --no-cache \
