@@ -13,6 +13,7 @@ services:
         - RPCUSER
         - RPCPASS
         - NETWORK
+        - EXTERNAL_ADDRESS
 
     btcd:
         extends: btc
@@ -36,27 +37,25 @@ services:
         entrypoint: ["./start-btcctl.sh"]
 
 
-    lnd:
-        image: gcr.io/lightning-btc-245420/github.com/z1nkum/lnd:latest
-        environment:
+    lnd_btc:
+      image: gcr.io/lightning-btc-245420/github.com/z1nkum/lnd:latest
+      environment:
           - RPCUSER
           - RPCPASS
           - NETWORK
           - CHAIN
           - DEBUG
-        volumes:
-            - shared:/rpc
-            - /root/.lnd:/root/.lnd/data:rw
-        entrypoint: ["./start-lnd.sh"]
-
-    lnd_btc:
-      extends: lnd
+          - EXTERNAL_ADDRESS
       container_name: lnd_btc
       ports:
           - "9735:9735"
           - "10009:10009"
+      volumes:
+          - shared:/rpc
+          - /root/.lnd:/root/.lnd/data:rw
       links:
           - "btcd:blockchain"
+      entrypoint: ["./start-lnd.sh"]
 
 volumes:
   # shared volume is need to store the btcd rpc certificates and use it within
