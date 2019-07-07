@@ -50,7 +50,7 @@ if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
 
-rm -y tls.cert tls.key # remove tls certs in case external IP changes
+rm -f tls.cert tls.key # remove tls certs in case external IP changes
 
 exec lnd \
     --logdir="/data" \
