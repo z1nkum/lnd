@@ -46,6 +46,7 @@ services:
           - DEBUG
         volumes:
             - shared:/rpc
+            - /root/.lnd:/root/.lnd:rw
         entrypoint: ["./start-lnd.sh"]
 
     lnd_btc:
