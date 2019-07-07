@@ -51,7 +51,6 @@ if [[ "$CHAIN" == "litecoin" ]]; then
 fi
 
 exec lnd \
-    --noseedbackup \
     --logdir="/data" \
     --alias="$ALIAS" \
     "--$CHAIN.active" \
