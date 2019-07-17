@@ -18,6 +18,7 @@ services:
     btcd:
         extends: btc
         container_name: btcd
+        restart: always
         ports:
           - "18333:18333"
           - "18334:18334"
@@ -39,6 +40,7 @@ services:
 
     lnd_btc:
       image: gcr.io/lightning-btc-245420/github.com/z1nkum/lnd:latest
+      restart: always
       environment:
           - RPCUSER
           - RPCPASS
